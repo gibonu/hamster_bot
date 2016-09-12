@@ -35,7 +35,7 @@ if(process.env.ENV !== 'production'){
 settings.cacheTime = 21600000;
 settings.startuptime = new Date() / 1000;
 
-settings.KEYS = fs.readFileSync(__dirname + '\\googleAPIkeys.txt').toString().split("\n");
+settings.KEYS = fs.readFileSync(__dirname + '\/googleAPIkeys.txt').toString().split("\n");
 settings.KEYS.splice(-1, 1);
 settings.KEYS = shuffle(settings.KEYS);
 settings.lastKey = 0;
