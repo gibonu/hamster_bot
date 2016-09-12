@@ -9,11 +9,11 @@ module.exports = {
     //google search
     main: function(bot, msg, params, settings) {
         var args = params;
-        var safe_map = {
-            1: "off",
-            2: "medium",
-            3: "high"
-        };
+        // var safe_map = {
+        //     1: "off",
+        //     2: "medium",
+        //     3: "high"
+        // };
         msg.channel.sendMessage("`Searching...`").then(message => {
             //
             // if (params.startsWith("/r/")) {
