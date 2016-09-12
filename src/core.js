@@ -4,7 +4,7 @@
 const Discord = require("discord.js");
 const fs = require('fs');
 const chalk = require('chalk');
-const config = require('./config.json');
+const _ = require("underscore");
 
 // variables
 var bot = new Discord.Client({
@@ -18,7 +18,20 @@ var games = ['Boku no Pico', 'Overwatch as WidowBitch', 'Fashion Wars 2', 'Adven
 
 // commands
 var settings = {};
-settings.config = config;
+if(process.env.ENV !== 'production'){
+  const config = require('./config.json');
+  settings.config = config;
+} else {
+  settings.config = {};
+  settings.config.ownerId = process.env.ownerId;
+  settings.config.botToken = process.env.botToken;
+  settings.config.googleSearchId = process.env.googleSearchId;
+  settings.config.imgurClientId = process.env.imgurClientId;
+  settings.config.imgurSecret = process.env.imgurSecret;
+  settings.config.MALUser = process.env.MALUser;
+  settings.config.MALPass = process.env.MALPass;
+}
+
 settings.cacheTime = 21600000;
 settings.startuptime = new Date() / 1000;
 
@@ -42,7 +55,7 @@ commands.help.main = function(bot, msg) {
 
 commands.reload = {};
 commands.reload.main = function(bot, msg, args) {
-    if (msg.author.id == settings.config.ownerId) {
+    if (_.contains(settings.config.owners, msg.author.id)) {
         try {
             delete commands[args];
             delete require.cache[__dirname + '\\commands\\' + args + '.js']; // require caches files, to reload need to clear cache
@@ -51,7 +64,7 @@ commands.reload.main = function(bot, msg, args) {
         } catch (err) {
             bot.sendMessage(msg.author, "Command not found or error reloading\n`" + err.message + "`");
         }
-    }
+    } else {bot.sendMessage(msg.author, 'You are not my master');}
 };
 
 commands.game = {};
