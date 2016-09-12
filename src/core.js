@@ -45,7 +45,7 @@ var commands = settings.commands;
 
 commands.help = {};
 commands.help.main = function(bot, msg) {
-    fs.readFile(__dirname + '\\help.txt', 'utf8', function(err, data) {
+    fs.readFile(__dirname + '\/help.txt', 'utf8', function(err, data) {
         if (err) {
             return bot.error(err);
         }
@@ -58,8 +58,8 @@ commands.reload.main = function(bot, msg, args) {
     if (_.contains(settings.config.owners, msg.author.id)) {
         try {
             delete commands[args];
-            delete require.cache[__dirname + '\\commands\\' + args + '.js']; // require caches files, to reload need to clear cache
-            commands[args] = require(__dirname + '\\commands\\' + args + '.js');
+            delete require.cache[__dirname + '\/commands\/' + args + '.js']; // require caches files, to reload need to clear cache
+            commands[args] = require(__dirname + '\/commands\/' + args + '.js');
             bot.sendMessage(msg.author, 'Reloaded ' + args);
         } catch (err) {
             bot.sendMessage(msg.author, "Command not found or error reloading\n`" + err.message + "`");
@@ -84,11 +84,11 @@ commands.game.main = function(bot, msg, args) {
 
 // functions
 var loadCommands = function() {
-    var files = fs.readdirSync(__dirname + '\\commands');
+    var files = fs.readdirSync(__dirname + '\/commands');
     for (let file of files) {
         if (file.endsWith('.js')) {
-            commands[file.slice(0, -3)] = require(__dirname + '\\commands\\' + file);
-            bot.log('loaded: ' + __dirname + '\\commands\\' + file);
+            commands[file.slice(0, -3)] = require(__dirname + '\/commands\/' + file);
+            bot.log('loaded: ' + __dirname + '\/commands\/' + file);
         }
     }
     bot.log("———— All Commands Loaded! ————");
