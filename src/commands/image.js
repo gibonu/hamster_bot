@@ -9,7 +9,7 @@ module.exports = {
     //google search
     main: function(bot, msg, params, settings) {
         var args = params;
-        safe_map = {
+        var safe_map = {
             1: "off",
             2: "medium",
             3: "high"
