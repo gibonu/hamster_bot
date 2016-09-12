@@ -1,3 +1,4 @@
+'use strict';
 let getName = require('../utils.js').getName;
 
 module.exports = {

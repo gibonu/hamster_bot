@@ -1,3 +1,4 @@
+'use strict';
 let request = require('request'),
     xml2js = require('xml2js'),
     fix = require('entities')
