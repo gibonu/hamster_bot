@@ -1,1 +1,1 @@
-bot: ./src/core.js
+bot: node ./src/core.js
