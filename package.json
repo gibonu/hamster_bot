@@ -8,7 +8,7 @@
     "url": "git+https://github.com/gibonu/hamster_bot.git"
   },
   "scripts": {
-    "start": "node src/core.js"
+    "start": "node ./src/core.js"
   },
   "keywords": [
     "discord",
