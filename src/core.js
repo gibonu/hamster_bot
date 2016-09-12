@@ -23,7 +23,7 @@ if(process.env.ENV !== 'production'){
   settings.config = config;
 } else {
   settings.config = {};
-  settings.config.owners = process.env.owners;
+  settings.config.owners = JSON.parse(process.env.owners);
   settings.config.botToken = process.env.botToken;
   settings.config.googleSearchId = process.env.googleSearchId;
   settings.config.imgurClientId = process.env.imgurClientId;
