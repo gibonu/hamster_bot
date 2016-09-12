@@ -1,0 +1,44 @@
+{
+  "name": "hamster_bot",
+  "scripts": {
+  },
+  "env": {
+    "botToken": {
+      "required": true
+    },
+    "ENV": {
+      "required": true
+    },
+    "googleSearchId": {
+      "required": true
+    },
+    "imgurClientId": {
+      "required": true
+    },
+    "imgurSecret": {
+      "required": true
+    },
+    "MALPass": {
+      "required": true
+    },
+    "MALUser": {
+      "required": true
+    },
+    "owners": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
