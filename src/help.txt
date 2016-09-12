@@ -1,0 +1,16 @@
+```xl
+[optional parameter]
+<required parameter>
+
+General stuff:
+  !help                         Shows this message.
+  !translate <sentence> <lang>  Translate text.
+  !image <query>                Search for random image on the web. Be careful tho.
+  !summon [user]                Summons requested user.
+  !anime <query>                Search for anime on MAL.
+  !manga <query>                Search for manga on MAL.
+  !lottery <name1, name2, ...>  Selects random name as a winner.
+
+Bot admin stuff:
+  !reload <plugin name>         Reloads requested plugin.
+```
