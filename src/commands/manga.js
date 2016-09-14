@@ -16,6 +16,7 @@ module.exports = {
         try {
             baseRequest(apiURL, function(error, response, body) {
                 if (response.statusCode == 200) {
+                  try{
                     xml2js.parseString(body, function(err, result) {
                         if(result.manga.entry.length > 5){
                           bot.sendMessage(msg.channel, 'Please define your inquiry. I found too many matches relating to ' + content + '. Returning first match: ');
@@ -28,6 +29,10 @@ module.exports = {
                             bot.sendMessage(msg.channel, mangaString);
                         }
                     });
+                  } catch(err) {
+                    bot.error(err);
+                    bot.sendMessage(msg.channel, 'Gibon is stupid Q_Q');
+                  }
                 } else bot.sendMessage(msg.channel, "No manga found for: \"**" + content + "**\"");
             })
         } catch (err) {
