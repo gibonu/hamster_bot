@@ -13,10 +13,10 @@ module.exports = {
         });
         let anime = content.split(" ").join("+");
         let apiURL = "http://myanimelist.net/api/anime/search.xml?q=" + anime;
+        let entry;
         try {
             baseRequest(apiURL, function(error, response, body) {
                 if (response.statusCode == 200) {
-                  try {
                     xml2js.parseString(body, function(err, result) {
                         if(result.anime.entry.length > 5){
                           bot.sendMessage(msg.channel, 'Please define your inquiry. I found too many matches relating to ' + content + '. Returning first match: ');
@@ -29,10 +29,6 @@ module.exports = {
                             bot.sendMessage(msg.channel, animeString);
                         }
                     });
-                  } catch(err) {
-                    bot.error(err);
-                    bot.sendMessage(msg.channel, 'Gibon is stupid Q_Q');
-                  }
                 } else bot.sendMessage(msg.channel, "No anime found for: \"**" + content + "**\"");
             })
         } catch (err) {
