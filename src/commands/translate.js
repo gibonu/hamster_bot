@@ -17,7 +17,7 @@ module.exports = {
             try {
                 let result = "";
                 let translated = body.match(/\[".+?",/g);
-                for (var i = 0; i < translated.length - 1; i++) {
+                for (var i = 0; i < translated.length; i++) {
                     var tmp = translated[i].substring(2, translated[i].length - 2);
                     result += tmp;
                 }
