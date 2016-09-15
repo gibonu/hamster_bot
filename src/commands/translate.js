@@ -2,7 +2,6 @@
 const request = require('request');
 const iso = require('iso-639-1');
 const querystring = require("querystring");
-const _ = require("underscore");
 
 module.exports = {
     deleteOriginal: false,
@@ -18,7 +17,6 @@ module.exports = {
             try {
                 let result = "";
                 let translated = body.match(/\[".+?",/g);
-                console.log(translated.length);
                 for (var i = 0; i < translated.length - 1; i++) {
                     var tmp = translated[i].substring(2, translated[i].length - 2);
                     result += tmp;
