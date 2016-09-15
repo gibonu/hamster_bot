@@ -2,6 +2,7 @@
 const request = require('request');
 const iso = require('iso-639-1');
 const querystring = require("querystring");
+const _ = require("underscore");
 
 module.exports = {
     deleteOriginal: false,
@@ -15,9 +16,14 @@ module.exports = {
         let gurl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + fromlang + "&tl=" + toLang + "&ie=UTF-8&dt=t&q=" + args;
         request(gurl, function(error, response, body) {
             try {
-                let translated = body.match(/^\[\[\[".+?",/)[0];
-                translated = translated.substring(4, translated.length - 2);
-                msg.channel.sendMessage("```\nTranslated:\n" + translated + "\n```");
+                let result = "";
+                let translated = body.match(/\[".+?",/g);
+                console.log(translated.length);
+                for (var i = 0; i < translated.length - 1; i++) {
+                    var tmp = translated[i].substring(2, translated[i].length - 2);
+                    result += tmp;
+                }
+                msg.channel.sendMessage("```\nTranslated:\n" + result + "\n```");
             } catch (err) {
                 msg.channel.sendMessage("`Input was invalid`");
             }
