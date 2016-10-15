@@ -36,8 +36,8 @@ module.exports = {
                     try {
                         var parsed = JSON.parse(body)['items'];
                         var rng = Math.floor(Math.random() * parsed.length);
-                        message.edit("```Here is yours " + args + " " + msg.author.username + "-senpai```");
-                        bot.sendMessage(msg.channel, parsed[rng]['link']);
+                        message.edit("```Here is your " + args + " " + msg.author.username + "-senpai``` \r\n" + parsed[rng]['link']);
+                        //bot.sendMessage(msg.channel, parsed[rng]['link']);
                     } catch (err) {
                       bot.log(err);
                         request('https://www.google.com/search?tbm=isch&gs_l=img&q=' + encodeURI(args) + '&alt=json&num=50&start=' + page, function(error, response, body) {
@@ -48,8 +48,8 @@ module.exports = {
                                     var rng = Math.floor(Math.random() * imgs.length);
                                     var src = imgs[rng].attribs.src;
                                     if (src) {
-                                        message.edit("```Here is yours " + args + " " + msg.author.username + "-chan```");
-                                        bot.sendMessage(msg.channel, src);
+                                        message.edit("```Here is your " + args + " " + msg.author.username + "-chan``` \r\n" + src);
+                                        //bot.sendMessage(msg.channel, src);
                                     } else {
                                         message.edit("`No results found!`");
                                     }

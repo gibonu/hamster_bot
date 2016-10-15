@@ -21,6 +21,9 @@ var settings = {};
 if(process.env.ENV !== 'production'){
   const config = require('./config.json');
   settings.config = config;
+  settings.KEYS = fs.readFileSync(__dirname + '\/googleAPIkeys.txt').toString().split("\n");
+  settings.KEYS.splice(-1, 1);
+  settings.KEYS = shuffle(settings.KEYS);
 } else {
   settings.config = {};
   settings.config.owners = JSON.parse(process.env.owners);
@@ -30,14 +33,13 @@ if(process.env.ENV !== 'production'){
   settings.config.imgurSecret = process.env.imgurSecret;
   settings.config.MALUser = process.env.MALUser;
   settings.config.MALPass = process.env.MALPass;
+  settings.KEYS = JSON.parse(process.env.googleAPIkeys);
+  settings.KEYS = shuffle(settings.KEYS);
 }
 
 settings.cacheTime = 21600000;
 settings.startuptime = new Date() / 1000;
 
-settings.KEYS = fs.readFileSync(__dirname + '\/googleAPIkeys.txt').toString().split("\n");
-settings.KEYS.splice(-1, 1);
-settings.KEYS = shuffle(settings.KEYS);
 settings.lastKey = 0;
 
 settings.commands = {};
@@ -147,7 +149,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', function(msg) {
-    if (msg.content.startsWith('!')) {
+    if (msg.content.startsWith('!') && msg.content.length > 1 && !msg.content.startsWith('!!') && !msg.content.startsWith('! ')) {
         checkCommand(msg, 1, bot);
     }
 });

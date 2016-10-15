@@ -10,6 +10,7 @@ General stuff:
   !anime <query>                Search for anime on MAL.
   !manga <query>                Search for manga on MAL.
   !lottery <name1, name2, ...>  Selects random name as a winner.
+  !gw2wiki <query>              Searches gw2wiki.
 
 Bot admin stuff:
   !reload <plugin name>         Reloads requested plugin.
