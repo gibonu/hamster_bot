@@ -48,8 +48,12 @@ module.exports = {
 
                     bot.sendMessage(msg.channel, text);
                 }
+            }).catch(function(err){
+              bot.sendMessage(msg.channel, 'No wiki page found for '+ params);
+              bot.error(err)
             })
         } catch (err) {
+            bot.sendMessage(msg.channel, 'Huge error occured =(');
             bot.error(err)
         }
     }
