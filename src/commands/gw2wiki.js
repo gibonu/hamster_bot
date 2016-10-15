@@ -19,7 +19,6 @@ module.exports = {
                 json: true
             }
             request(options).then(response => {
-                console.log(response);
                 if (response.query.search.length > 0) return response;
                 else throw new Error('not found');
             }).then(response => {
@@ -37,7 +36,6 @@ module.exports = {
                 }
                 return request(options);
             }).then(response => {
-              console.log(response.title);
                 if (response.parse.text["*"]) {
                     let text = response.parse.text["*"];
                     const title = response.parse.title;
